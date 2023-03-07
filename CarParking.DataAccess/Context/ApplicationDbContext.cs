@@ -13,11 +13,13 @@ namespace CarParking.DataAccess.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();   // создаем базу данных при первом обращении
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();   // создаем базу данных при первом обращении
         }
 
         public DbSet<Zone> Zones { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Parking> Parkings { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
     }
 }
