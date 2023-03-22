@@ -14,7 +14,7 @@ namespace CarParking.Models.Entities
         public int ZoneId { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public Decimal TotalPrice { get; set; } = Decimal.Zero;
+        public decimal TotalPrice { get; set; } = decimal.Zero;
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
 

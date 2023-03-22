@@ -1,4 +1,7 @@
+using CarParking.Api;
 using CarParking.DataAccess.Context;
+using CarParking.DataAccess.Repositories.Interfaces;
+using CarParking.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,12 +10,28 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
     builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+
+builder.Services.AddControllers();
+
+var mapper = MappingConfig.RegisterMaps();
+
+builder.Services.AddSingleton(mapper);
+
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
-app.MapGet("/", (ApplicationDbContext context) => { 
-   
-    return "Hello World!"; 
-});
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.RoutePrefix = string.Empty;
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+
+    });
+}
 
 app.Run();
 

@@ -17,5 +17,5 @@
   <ItemGroup>
     <ProjectReference Include="..\CarParking.Models\CarParking.Models\CarParking.Models.csproj" />
   </ItemGroup>
-
+  
 </Project>
