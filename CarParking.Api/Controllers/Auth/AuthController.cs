@@ -29,10 +29,11 @@ namespace CarParking.Api.Controllers.Auth
                 UserRegistrationDto userRegistrationDto = _mapper.Map<RegistrationRequestDto, UserRegistrationDto>(registrationRequestDto);
                 if (_userRepository.IsUniqueUser(userRegistrationDto.Email))
                 {
-                    _userRepository.Register(userRegistrationDto);
+                    await _userRepository.Register(userRegistrationDto);
+
                 }
             }
-            return Ok();
+            return BadRequest();
         }
 
 

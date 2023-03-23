@@ -1,4 +1,5 @@
-﻿using CarParking.DataAccess.Context;
+﻿using Azure.Core;
+using CarParking.DataAccess.Context;
 using CarParking.DataAccess.Repositories.Interfaces;
 using CarParking.Models.Dto;
 using CarParking.Models.Entities;
@@ -31,9 +32,17 @@ namespace CarParking.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<User> Register(UserRegistrationDto registrationDto)
+        public async Task<User> RegisterAsync(UserRegistrationDto registrationDto)
         {
-            throw new NotImplementedException();
+            var user = new User();
+            user.Email = registrationDto.Email;
+            user.Name = registrationDto.Name;
+            user.Password = BCrypt.Net.BCrypt.HashPassword(registrationDto.Password);
+            await _dbSet.AddAsync(user);
+            await SaveChangesAsync();
+
+
         }
     }
+
 }
