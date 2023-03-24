@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
-using CarParking.Api.Models.Dto;
+using CarParking.Api.Models;
 using CarParking.DataAccess.Repositories.Interfaces;
-using CarParking.Models.Dto;
+using CarParking.Models;
 using CarParking.Models.Entities;
+using CarParking.Services.Services.Interfaces;
+using CarParking.Services.Services.Models.User;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,32 +12,29 @@ namespace CarParking.Api.Controllers.Auth
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : ApiControllerBase
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
         private readonly IMapper _mapper;
 
-        public AuthController(IUserRepository userRepository, IMapper mapper)
+        public AuthController(IUserService userService, IMapper mapper)
         {
-            _userRepository = userRepository;
+            _userService = userService;
             _mapper = mapper;
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<User>> Register([FromBody]RegistrationRequestDto registrationRequestDto)
+        public async Task<IActionResult> Register([FromBody]RegistrationRequest registrationRequest)
         {
-            if (registrationRequestDto != null)
+            try {
+                var userRegisterDto = _mapper.Map<RegistrationRequest, UserRegisterDto>(registrationRequest);
+                var registeredUser = await _userService.RegisterAsync(userRegisterDto);
+                //TODO implement token generation
+            }catch(Exception ex)
             {
-                UserRegistrationDto userRegistrationDto = _mapper.Map<RegistrationRequestDto, UserRegistrationDto>(registrationRequestDto);
-                if (_userRepository.IsUniqueUser(userRegistrationDto.Email))
-                {
-                    await _userRepository.Register(userRegistrationDto);
-
-                }
+                return ExceptionResult(ex);
             }
-            return BadRequest();
         }
-
 
 
     }

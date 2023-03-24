@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace CarParking.DataAccess.Repositories.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository: IRepository<User>
     {
         bool IsUniqueUser(string email);
-        Task<User> Register(UserRegistrationDto registrationDto);
-        Task<User> Login(UserLoginDto loginDto);
+        Task<User> FindByEmailAsync(string email);
     }
 }

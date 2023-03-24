@@ -23,13 +23,14 @@ namespace CarParking.DataAccess.Repositories
             _dbSet = _dbContext.Set<T>();
         }
 
-        public async Task AddAsync(T entity, bool persist = true)
+        public async Task<T> AddAsync(T entity, bool persist = true)
         {
-           _dbSet.Add(entity);
+            _dbSet.Add(entity);
             if (persist)
             {
                 await SaveChangesAsync();
             }
+            return entity;
         }
 
         public async Task AddRangeAsync(IEnumerable<T> entities, bool persist = true)

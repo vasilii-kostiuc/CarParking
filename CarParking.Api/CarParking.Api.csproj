@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CarParking.DataAccess\CarParking.DataAccess.csproj" />
+    <ProjectReference Include="..\CarParking.Services\CarParking.Services.csproj" />
   </ItemGroup>
 
 </Project>

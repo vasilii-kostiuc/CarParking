@@ -9,7 +9,7 @@ namespace CarParking.DataAccess.Repositories.Interfaces
     public interface IRepository<T> where T : class
     {
         Task<T> FindAsync(int id);
-        Task AddAsync(T entity, bool persist = true);
+        Task<T> AddAsync(T entity, bool persist = true);
         Task AddRangeAsync(IEnumerable<T> entities, bool persist = true);
         Task UpdateAsync(T entity, bool persist = true);
         Task UpdateRangeAsync(IEnumerable<T> entity, bool persist = true);

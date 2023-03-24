@@ -1,6 +1,6 @@
-﻿namespace CarParking.Api.Models.Dto
+﻿namespace CarParking.Api.Models
 {
-    public class RegistrationRequestDto
+    public class RegistrationRequest
     {
         public string Name { get; set; }
 

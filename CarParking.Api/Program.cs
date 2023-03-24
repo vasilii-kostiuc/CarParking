@@ -14,9 +14,7 @@ builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 builder.Services.AddControllers();
 
-var mapper = MappingConfig.RegisterMaps();
 
-builder.Services.AddSingleton(mapper);
 
 builder.Services.AddSwaggerGen();
 
