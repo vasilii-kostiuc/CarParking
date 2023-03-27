@@ -12,9 +12,9 @@ namespace CarParking.Models.Entities
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string RememberToken { get; set; }
-        public DateTime EmailVerifiedAt { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime Updated { get; set; }
+        public string? RememberToken { get; set; }
+        public DateTime? EmailVerifiedAt { get; set; }
+        public DateTime? Created { get; set; }
+        public DateTime? Updated { get; set; }
     }
 }

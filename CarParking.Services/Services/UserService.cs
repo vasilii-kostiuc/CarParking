@@ -3,9 +3,11 @@ using CarParking.DataAccess.Repositories.Interfaces;
 using CarParking.Models.Entities;
 using CarParking.Services.Services.Interfaces;
 using CarParking.Services.Services.Models.User;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,7 +33,7 @@ namespace CarParking.Services.Services
 
             if(!BCrypt.Net.BCrypt.Verify(loginDto.Password, user.Password))
             {
-                throw new Exception($"Incorrect Password");
+                throw new Exception("Wrong Password");
             }
 
             return user;

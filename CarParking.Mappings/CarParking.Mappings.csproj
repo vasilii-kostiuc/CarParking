@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CarParking.Api\CarParking.Api.csproj" />
+    <ProjectReference Include="..\CarParking.Api.Models\CarParking.Api.Models.csproj" />
     <ProjectReference Include="..\CarParking.Models\CarParking.Models\CarParking.Models.csproj" />
     <ProjectReference Include="..\CarParking.Services\CarParking.Services.csproj" />
   </ItemGroup>

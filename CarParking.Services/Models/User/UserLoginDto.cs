@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarParking.Services.Services.Models.User
 {
-    public interface UserLoginDto
+    public class UserLoginDto
     {
         [Required]
         public string Email { get; set; }

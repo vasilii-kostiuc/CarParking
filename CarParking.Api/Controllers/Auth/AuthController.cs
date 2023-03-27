@@ -7,6 +7,10 @@ using CarParking.Services.Services.Interfaces;
 using CarParking.Services.Services.Models.User;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace CarParking.Api.Controllers.Auth
 {
@@ -16,11 +20,13 @@ namespace CarParking.Api.Controllers.Auth
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-        public AuthController(IUserService userService, IMapper mapper)
+        public AuthController(IUserService userService, IMapper mapper,IConfiguration configuration)
         {
             _userService = userService;
             _mapper = mapper;
+            _configuration = configuration;
         }
 
         [HttpPost("register")]
@@ -30,12 +36,63 @@ namespace CarParking.Api.Controllers.Auth
                 var userRegisterDto = _mapper.Map<RegistrationRequest, UserRegisterDto>(registrationRequest);
                 var registeredUser = await _userService.RegisterAsync(userRegisterDto);
                 //TODO implement token generation
-            }catch(Exception ex)
+
+                string token = CreateToken(registeredUser);
+
+                return Ok(new RegisterResponse()
+                {
+                    AccesToken = token                    
+                });
+
+            }
+            catch(Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
+        {
+            try
+            {
+                var userLoginDto = _mapper.Map<LoginRequest, UserLoginDto>(loginRequest);
+                var user = await _userService.LoginAsync(userLoginDto);
+                //TODO implement token generation
+
+                string token = CreateToken(user);
+
+                return Ok(new LoginResponse()
+                {
+                    AccesToken = token
+                });
+            }
+            catch (Exception ex)
             {
                 return ExceptionResult(ex);
             }
         }
 
 
+        private string CreateToken(User user)
+        {
+            List<Claim> claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Name)
+            };
+
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
+
+            var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials: cred);
+
+            string jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return jwt;
+        }
     }
 }

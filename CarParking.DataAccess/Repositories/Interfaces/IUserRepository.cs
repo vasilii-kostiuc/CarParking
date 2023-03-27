@@ -1,5 +1,5 @@
 ﻿using CarParking.Models.Entities;
-using CarParking.Models.Dto;
+using CarParking.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -4,6 +4,6 @@ namespace CarParking.Api.Models
 {
     public class RegisterResponse
     {
-        string AccesToken { get; set; }
+        public string AccesToken { get; set; }
     }
 }

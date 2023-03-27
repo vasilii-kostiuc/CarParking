@@ -14,11 +14,13 @@ namespace CarParking.DataAccess.Repositories
         public bool IsUniqueUser(string email)
         {
             var user = _dbSet.FirstOrDefault(x => x.Email == email);
+            
             if (user == null)
             {
-                return false;
+                return true;
             }
-            return true;
+
+            return false;
         }
 
         public async Task<User> FindByEmailAsync(string email)
