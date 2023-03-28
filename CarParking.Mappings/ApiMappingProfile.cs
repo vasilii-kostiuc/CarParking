@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CarParking.Api.Models;
+using CarParking.Api.Models.Models;
 using CarParking.Models;
 
 using CarParking.Models.Entities;
@@ -13,6 +14,8 @@ namespace CarParking.Mappings
         {
             CreateMap<RegistrationRequest, UserRegisterDto>().ReverseMap(); 
             CreateMap<LoginRequest, UserLoginDto>().ReverseMap();
+            CreateMap<ProfileUpdateRequest, UpdateProfileDto>().ReverseMap();
+            CreateMap<User, ProfileResponse>();
         }
     }
 }

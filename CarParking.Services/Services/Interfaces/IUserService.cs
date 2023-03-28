@@ -13,5 +13,9 @@ namespace CarParking.Services.Services.Interfaces
     {
         Task<User> RegisterAsync(UserRegisterDto registrationDto);
         Task<User> LoginAsync(UserLoginDto loginDto);
+        Task<User> GetAsync(int userId);
+        Task<User> GetByEmailUserAsync(string email);
+        Task UpdateProfile(int userId, UpdateProfileDto profileDto);
+        Task UpdatePassword(int userId, string password, string confirmation);
     }
 }

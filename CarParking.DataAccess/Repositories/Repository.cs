@@ -104,5 +104,10 @@ namespace CarParking.DataAccess.Repositories
                 throw new CustomException("An error occurred updating the database", ex);
             }
         }
+
+        public async Task<IEnumerable<T>> GetAllAsync()
+        {
+            return await _dbSet.ToListAsync<T>();
+        }
     }
 }

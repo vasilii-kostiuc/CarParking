@@ -10,6 +10,7 @@ namespace CarParking.DataAccess.Repositories.Interfaces
     {
         Task<T> FindAsync(int id);
         Task<T> AddAsync(T entity, bool persist = true);
+        Task<IEnumerable<T>> GetAllAsync();
         Task AddRangeAsync(IEnumerable<T> entities, bool persist = true);
         Task UpdateAsync(T entity, bool persist = true);
         Task UpdateRangeAsync(IEnumerable<T> entity, bool persist = true);

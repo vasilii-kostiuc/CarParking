@@ -8,10 +8,10 @@ namespace CarParking.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class ZonesController : ControllerBase
+    public class ZoneController : ApiControllerBase
     {
         // GET: api/<ZonesController>
-        [HttpGet, Authorize]
+        [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
