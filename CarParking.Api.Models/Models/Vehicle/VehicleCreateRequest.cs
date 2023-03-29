@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarParking.Services.Models.Vehicle
+namespace CarParking.Api.Models.Models.Vehicle
 {
-    public class VehicleUpdateDto
+    public class VehicleCreateRequest
     {
         public string Name { get; set; }
         [Required]

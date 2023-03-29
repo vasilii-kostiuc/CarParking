@@ -1,4 +1,4 @@
-﻿namespace CarParking.Api.Models
+﻿namespace CarParking.Api.Models.Models.User
 {
     public class LoginResponse
     {

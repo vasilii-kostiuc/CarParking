@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CarParking.Api.Models;
+using CarParking.Api.Models.Models.User;
 using CarParking.DataAccess.Repositories.Interfaces;
 using CarParking.Models;
 using CarParking.Models.Entities;

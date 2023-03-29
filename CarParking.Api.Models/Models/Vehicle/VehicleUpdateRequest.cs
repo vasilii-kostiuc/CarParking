@@ -5,13 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarParking.Services.Models.Vehicle
+namespace CarParking.Api.Models.Models.Vehicle
 {
-    public class VehicleUpdateDto
+    public class VehicleUpdateRequest
     {
+        [Required]
+        public int Id { get; set; }
         public string Name { get; set; }
         [Required]
         public string PlateNumber { get; set; }
         public int UserId { get; set; }
+
     }
 }

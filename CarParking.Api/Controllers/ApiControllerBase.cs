@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CarParking.Api.Wrappers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -12,7 +13,11 @@ namespace CarParking.Api.Controllers
             return ex switch
             {
                 // TODO To add different Exception types
-                _ => StatusCode((int)HttpStatusCode.BadRequest, ex.Message)
+                _ => BadRequest(new ApiResponse 
+                {
+                    Succeeded = false,
+                    Errors = new [] { ex.Message },
+                })
             };
         }
     }
