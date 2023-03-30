@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
-using CarParking.Api.Models.Models;
+using CarParking.Api.Models.Models.Parking;
 using CarParking.Api.Models.Models.User;
 using CarParking.Api.Models.Models.Vehicle;
+using CarParking.Api.Models.Models.Zone;
 using CarParking.Models;
 
 using CarParking.Models.Entities;
+using CarParking.Services.Models.Parking;
 using CarParking.Services.Models.Vehicle;
 using CarParking.Services.Services.Models.User;
 
@@ -24,6 +26,13 @@ namespace CarParking.Mappings
             CreateMap<VehicleUpdateRequest, VehicleUpdateDto>();
 
             CreateMap<Zone, ZoneDto>().ReverseMap();
+
+            CreateMap<Vehicle, VehicleDto>().ReverseMap();
+            
+            CreateMap<ParkingStartRequest, ParkingStartDto>();
+            CreateMap<ParkingStartDto, Parking>();
+            CreateMap<Parking, ParkingDto>();
+
         }
     }
 }

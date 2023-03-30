@@ -10,6 +10,6 @@ namespace CarParking.Models.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public decimal PricePerGour { get; set; }
+        public decimal PricePerHour { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace CarParking.Api.Controllers
             try
             {
                 var vehicles = await _vehicleService.GetAllAsync();
-                var response = new ApiResponse<IEnumerable<VehicleDto>>
+                var response = new ApiResponse
                 {
                     Data = _mapper.Map<IEnumerable<VehicleDto>>(vehicles)
                 };
@@ -53,7 +53,7 @@ namespace CarParking.Api.Controllers
             try
             {
                 var vehicle = await _vehicleService.GetAsync(id);
-                var response = new ApiResponse<VehicleDto>
+                var response = new ApiResponse
                 {
                     Data = _mapper.Map<VehicleDto>(vehicle)
                 };
@@ -75,7 +75,7 @@ namespace CarParking.Api.Controllers
                 var vehicleDto = _mapper.Map<VehicleCreateDto>(vehicleCreateRequest);
                 int vehicleId = await _vehicleService.CreateAsync(vehicleDto);
 
-                var response = new ApiResponse<VehicleCreateResponse>()
+                var response = new ApiResponse()
                 {
                     Data = new VehicleCreateResponse { Id = vehicleId }
                 };
@@ -101,7 +101,7 @@ namespace CarParking.Api.Controllers
                 var vehicleDto = _mapper.Map<VehicleUpdateDto>(vehicleUpdateRequest);
                 await _vehicleService.UpdateAsync(vehicleDto);
 
-                var response = new ApiResponse<VehicleUpdateResponse>()
+                var response = new ApiResponse()
                 {
                     Data = new VehicleUpdateResponse { Id = id }
                 };

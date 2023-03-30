@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using CarParking.Api.Models.Models;
 using CarParking.Api.Wrappers;
 using CarParking.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using CarParking.Models.Entities;
+using CarParking.Api.Models.Models.Zone;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CarParking.Api.Controllers
@@ -17,7 +17,6 @@ namespace CarParking.Api.Controllers
         private readonly IZoneService _zoneService;
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly IMapper _mapper;
-
 
         public ZoneController(IZoneService zoneService, IHttpContextAccessor contextAccessor, IMapper mapper)
         {
@@ -49,6 +48,12 @@ namespace CarParking.Api.Controllers
             try
             {
                 var zone = await _zoneService.GetAsync(id);
+
+                if(zone == null)
+                {
+                    return NotFound();
+                }
+
                 ApiResponse apiResponse = new ApiResponse(_mapper.Map<ZoneDto>(zone));
                 return Ok(apiResponse);
             }
@@ -58,22 +63,22 @@ namespace CarParking.Api.Controllers
             }
         }
 
-        // POST api/<ZonesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        //// POST api/<ZonesController>
+        //[HttpPost]
+        //public void Post([FromBody] string value)
+        //{
+        //}
 
-        // PUT api/<ZonesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT api/<ZonesController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/<ZonesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/<ZonesController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

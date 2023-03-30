@@ -1,10 +1,6 @@
 ﻿using CarParking.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace CarParking.DataAccess.Context
 {
@@ -13,8 +9,8 @@ namespace CarParking.DataAccess.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();   // создаем базу данных при первом обращении
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();   // создаем базу данных при первом обращении
         }
 
         public DbSet<Zone> Zones { get; set; }
@@ -46,19 +42,37 @@ namespace CarParking.DataAccess.Context
                 {
                     Id = 1,
                     Name = "Green Zone",
-                    PricePerGour = 100
+                    PricePerHour = 100
                 },
                 new Zone
                 {
                     Id=2,
                     Name = "Yellow Zone",
-                    PricePerGour = 200
+                    PricePerHour = 200
                 },
                 new Zone
                 {
                     Id = 3,
                     Name = "Red Zone",
-                    PricePerGour = 300
+                    PricePerHour = 300
+                }
+            );
+
+            modelBuilder.Entity<Vehicle>().HasData(
+                new
+                {
+                    Id = 1,
+                    Name = "WV",
+                    PlateNumber = "API 123",
+                    UserId = 1
+                },
+                new
+                {
+                    Id = 2,
+                    Name = "Mercedes",
+                    PlateNumber = "API 232",
+                    UserId = 1,
+
                 }
             );
         }

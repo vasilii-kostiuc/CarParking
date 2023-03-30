@@ -2,12 +2,6 @@
 using CarParking.DataAccess.Exceptions;
 using CarParking.DataAccess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarParking.DataAccess.Repositories
 {
@@ -52,7 +46,7 @@ namespace CarParking.DataAccess.Repositories
 
         public async Task DeleteAsync(int id, bool persist = true)
         {
-            var entity = new { Id = id};
+            var entity = new { Id = id };
             _dbContext.Entry(entity).State = EntityState.Deleted;
             if (persist)
             {

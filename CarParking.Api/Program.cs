@@ -17,13 +17,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
     builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
-builder.Services.AddScoped<IVehicleService, VehicleService>();
-builder.Services.AddScoped<IZoneRepository, ZoneRepository>();
-builder.Services.AddScoped<IZoneService, ZoneService>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+
+builder.Services.AddTransient<IVehicleRepository, VehicleRepository>();
+builder.Services.AddTransient<IVehicleService, VehicleService>();
+
+builder.Services.AddTransient<IZoneRepository, ZoneRepository>();
+builder.Services.AddTransient<IZoneService, ZoneService>();
+
+builder.Services.AddTransient<IParkingRepository, ParkingReposirory>();
+builder.Services.AddTransient<IParkingPriceCalculator, ParkingPriceCalculator>();
+builder.Services.AddTransient<IParkingService, ParkingService>();
 
 builder.Services.AddAutoMapper(typeof(ApiMappingProfile));
 builder.Services.AddHttpContextAccessor();
