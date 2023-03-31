@@ -26,8 +26,6 @@ namespace CarParking.Mappings
             CreateMap<VehicleUpdateRequest, VehicleUpdateDto>();
 
             CreateMap<Zone, ZoneDto>().ReverseMap();
-
-            CreateMap<Vehicle, VehicleDto>().ReverseMap();
             
             CreateMap<ParkingStartRequest, ParkingStartDto>();
             CreateMap<ParkingStartDto, Parking>();

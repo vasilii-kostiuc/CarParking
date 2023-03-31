@@ -7,6 +7,7 @@ using CarParking.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace CarParking.Api.Controllers
 {
@@ -25,6 +26,50 @@ namespace CarParking.Api.Controllers
             _mapper = mapper;
             _contextAccessor = contextAccessor;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                var parkings = await _parkingService.GetAllAsync();
+                var response = new ApiResponse
+                {
+                    Data = _mapper.Map<IEnumerable <ParkingDto>>(parkings)
+                };
+
+                return Ok(response);
+            }
+            catch(Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
+
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            try
+            {
+                var parking = await _parkingService.GetAsync(id);
+                var response = new ApiResponse
+                {
+                    Data = _mapper.Map<ParkingDto>(parking)
+                };
+
+                return Ok(response);
+            }
+            catch(Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+            return Ok();
+        }
+
+
+
 
         [HttpPost]
         [Route("start")]

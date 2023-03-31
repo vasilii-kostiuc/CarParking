@@ -13,5 +13,9 @@ namespace CarParking.Services.Services.Interfaces
         public Task<Parking> StartAsync(ParkingStartDto parkingStart);
 
         public Task<Parking> StopAsync(int id);
+        
+        public Task<Parking> GetAsync(int parkingId);
+
+        public Task<IEnumerable<Parking>> GetAllAsync();
     }
 }

@@ -19,6 +19,16 @@ namespace CarParking.Services.Services
             _priceCalculator = priceCalculator;
         }
 
+        public async Task<IEnumerable<Parking>> GetAllAsync()
+        {
+            return await _parkingRepository.GetAllAsync();
+        }
+
+        public async Task<Parking> GetAsync(int parkingId)
+        {
+            return await _parkingRepository.FindAsync(parkingId);
+        }
+
         public async Task<Parking> StartAsync(ParkingStartDto parkingStart)
         {
             var parking = _mapper.Map<Parking>(parkingStart);
