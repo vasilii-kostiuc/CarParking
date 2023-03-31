@@ -65,10 +65,7 @@ namespace CarParking.Api.Controllers
             {
                 return ExceptionResult(ex);
             }
-            return Ok();
         }
-
-
 
 
         [HttpPost]

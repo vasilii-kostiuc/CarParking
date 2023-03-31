@@ -35,20 +35,20 @@ namespace CarParking.Services.Services
         public async Task<User> LoginAsync(UserLoginDto loginDto)
         {
             User user = await _repository.FindByEmailAsync(loginDto.Email);
-            
-            if(user == null)
+
+            if (user == null)
             {
                 throw new Exception($"User with this Email: {loginDto.Email} doesnt exists");
-            }    
+            }
 
-            if(!BCrypt.Net.BCrypt.Verify(loginDto.Password, user.Password))
+            if (!BCrypt.Net.BCrypt.Verify(loginDto.Password, user.Password))
             {
                 throw new Exception("Wrong Password");
             }
 
             return user;
 
-        }
+        } 
 
         public async Task<User> RegisterAsync(UserRegisterDto registrationDto)
         {
