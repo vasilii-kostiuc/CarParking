@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarParking.Models.Entities
+namespace CarParking.Api.Models.Models.Vehicle
 {
-    public class Zone
+    public class VehicleDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public decimal PricePerHour { get; set; }
+        public string PlateNumber { get; set; }
+        public int UserId { get; set; }
     }
 }

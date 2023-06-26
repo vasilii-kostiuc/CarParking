@@ -9,11 +9,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CarParking.Api", "CarParkin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CarParking.Models", "CarParking.Models", "{CED86F96-9265-47D1-9779-6558E4986BBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarParking.Models", "CarParking.Models\CarParking.Models\CarParking.Models.csproj", "{5ED64ADF-75DB-45D8-9649-2695C364A172}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarParking.Models", "CarParking.Models\CarParking.Models\CarParking.Models.csproj", "{5ED64ADF-75DB-45D8-9649-2695C364A172}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarParking.DataAccess", "CarParking.DataAccess\CarParking.DataAccess.csproj", "{9C54FC5A-13D0-4935-AB05-0D633CB95EE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarParking.DataAccess", "CarParking.DataAccess\CarParking.DataAccess.csproj", "{9C54FC5A-13D0-4935-AB05-0D633CB95EE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarParking.Api", "CarParking.Api\CarParking.Api.csproj", "{881990D4-6047-4417-981A-167291074BC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarParking.Api", "CarParking.Api\CarParking.Api.csproj", "{881990D4-6047-4417-981A-167291074BC3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CarParking.Mappings", "CarParking.Mappings", "{63CE75BC-AFD2-4871-B348-A38BB67448D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarParking.Mappings", "CarParking.Mappings\CarParking.Mappings.csproj", "{61BA66CC-B3E5-4BBB-BEA8-CCE1281C8691}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarParking.Services", "CarParking.Services\CarParking.Services.csproj", "{072ADC96-3DED-4ABF-A8F5-075D2BFEA470}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarParking.Api.Models", "CarParking.Api.Models\CarParking.Api.Models.csproj", "{4F746571-B3C9-4C11-85B5-D36BF6FEA03C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +41,18 @@ Global
 		{881990D4-6047-4417-981A-167291074BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{881990D4-6047-4417-981A-167291074BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{881990D4-6047-4417-981A-167291074BC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61BA66CC-B3E5-4BBB-BEA8-CCE1281C8691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61BA66CC-B3E5-4BBB-BEA8-CCE1281C8691}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61BA66CC-B3E5-4BBB-BEA8-CCE1281C8691}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61BA66CC-B3E5-4BBB-BEA8-CCE1281C8691}.Release|Any CPU.Build.0 = Release|Any CPU
+		{072ADC96-3DED-4ABF-A8F5-075D2BFEA470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{072ADC96-3DED-4ABF-A8F5-075D2BFEA470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{072ADC96-3DED-4ABF-A8F5-075D2BFEA470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{072ADC96-3DED-4ABF-A8F5-075D2BFEA470}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F746571-B3C9-4C11-85B5-D36BF6FEA03C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F746571-B3C9-4C11-85B5-D36BF6FEA03C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F746571-B3C9-4C11-85B5-D36BF6FEA03C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F746571-B3C9-4C11-85B5-D36BF6FEA03C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +61,8 @@ Global
 		{5ED64ADF-75DB-45D8-9649-2695C364A172} = {CED86F96-9265-47D1-9779-6558E4986BBB}
 		{9C54FC5A-13D0-4935-AB05-0D633CB95EE9} = {44DE364E-3F08-4C14-8A76-C16938A16C9B}
 		{881990D4-6047-4417-981A-167291074BC3} = {8A932F3A-6C71-4614-BB3F-A159D58DDD13}
+		{61BA66CC-B3E5-4BBB-BEA8-CCE1281C8691} = {63CE75BC-AFD2-4871-B348-A38BB67448D2}
+		{4F746571-B3C9-4C11-85B5-D36BF6FEA03C} = {8A932F3A-6C71-4614-BB3F-A159D58DDD13}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {22330C81-EE0B-49F9-819E-319FB01E4828}

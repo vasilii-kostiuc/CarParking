@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarParking.Models.Entities
+namespace CarParking.Api.Models.Models.Zone
 {
-    public class Zone
+    public class ZoneDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

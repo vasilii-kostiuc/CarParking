@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarParking.Models.Entities
+namespace CarParking.Api.Models.Models.Vehicle
 {
-    public class Zone
+    public class VehicleCreateResponse
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal PricePerHour { get; set; }
     }
 }

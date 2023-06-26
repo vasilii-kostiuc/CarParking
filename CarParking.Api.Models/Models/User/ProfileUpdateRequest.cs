@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarParking.Models.Entities
+namespace CarParking.Api.Models.Models.User
 {
-    public class Zone
+    public class ProfileUpdateRequest
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public decimal PricePerHour { get; set; }
+        public string Email { get; set; }
     }
 }
