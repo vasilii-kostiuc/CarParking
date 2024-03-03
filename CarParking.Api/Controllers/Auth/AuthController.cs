@@ -5,6 +5,7 @@ using CarParking.Models;
 using CarParking.Models.Entities;
 using CarParking.Services.Services.Interfaces;
 using CarParking.Services.Services.Models.User;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -14,6 +15,7 @@ using System.Text;
 
 namespace CarParking.Api.Controllers.Auth
 {
+    [EnableCors()]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ApiControllerBase

@@ -73,7 +73,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors(builder => builder.AllowAnyOrigin());
 //app.UseRouting();
 app.MapControllers();
 app.Run();
