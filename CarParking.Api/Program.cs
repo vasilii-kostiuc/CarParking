@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Swashbuckle.AspNetCore.Filters;
+using System.Reflection.Metadata.Ecma335;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,6 +61,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
+builder.Services.AddCors();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -73,7 +76,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseCors(builder => builder.AllowAnyOrigin());
+app.UseCors(builder => { builder.SetIsOriginAllowed((origin) => { return origin == "http://localhost:5173"; }); builder.AllowAnyHeader(); builder.AllowAnyMethod(); });
 //app.UseRouting();
 app.MapControllers();
 app.Run();

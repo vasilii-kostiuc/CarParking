@@ -43,7 +43,7 @@ namespace CarParking.Api.Controllers.Auth
 
                 return Ok(new RegisterResponse()
                 {
-                    AccesToken = token                    
+                    AccessToken = token                    
                 });
 
             }
@@ -66,7 +66,7 @@ namespace CarParking.Api.Controllers.Auth
 
                 return Ok(new LoginResponse()
                 {
-                    AccesToken = token
+                    AccessToken = token
                 });
             }
             catch (Exception ex)

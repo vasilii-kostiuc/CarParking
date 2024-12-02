@@ -10,6 +10,7 @@ namespace CarParking.DataAccess.Repositories
         public UserRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
+        
         public bool IsUniqueUser(string email)
         {
             var user = _dbSet.FirstOrDefault(x => x.Email == email);
