@@ -46,8 +46,11 @@ namespace CarParking.Api.Controllers.Auth
             int userId = int.Parse(_contextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
             await _userService.UpdateProfile(userId, updateProfileDto);
+            
+            User user = await _userService.GetAsync(userId);
+            var profileResponse = _mapper.Map<User, ProfileResponse>(user);
 
-            return Ok();
+            return Ok(profileResponse);
         }
 
     }

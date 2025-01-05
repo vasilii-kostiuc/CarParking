@@ -9,7 +9,6 @@ namespace CarParking.DataAccess.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            Database.EnsureDeleted();
             Database.EnsureCreated();   // создаем базу данных при первом обращении
         }
 
@@ -58,23 +57,6 @@ namespace CarParking.DataAccess.Context
                 }
             );
 
-            modelBuilder.Entity<Vehicle>().HasData(
-                new
-                {
-                    Id = 1,
-                    Name = "WV",
-                    PlateNumber = "API 123",
-                    UserId = 1
-                },
-                new
-                {
-                    Id = 2,
-                    Name = "Mercedes",
-                    PlateNumber = "API 232",
-                    UserId = 1,
-
-                }
-            );
         }
 
     }

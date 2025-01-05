@@ -9,7 +9,7 @@ namespace CarParking.Api.Models.Models.Vehicle
 {
     public class VehicleCreateRequest
     {
-        public string Name { get; set; }
+        public string Description { get; set; }
         [Required]
         public string PlateNumber { get; set; }
         public int UserId { get; set; }

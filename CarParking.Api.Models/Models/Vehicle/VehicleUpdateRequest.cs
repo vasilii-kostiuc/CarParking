@@ -11,7 +11,7 @@ namespace CarParking.Api.Models.Models.Vehicle
     {
         [Required]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Descriptions { get; set; }
         [Required]
         public string PlateNumber { get; set; }
         public int UserId { get; set; }
