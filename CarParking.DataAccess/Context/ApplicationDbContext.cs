@@ -9,6 +9,7 @@ namespace CarParking.DataAccess.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            //Database.EnsureDeleted();   // создаем базу данных при первом обращении
             Database.EnsureCreated();   // создаем базу данных при первом обращении
         }
 

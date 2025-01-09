@@ -6,6 +6,9 @@ using CarParking.Services.Models.Vehicle;
 using CarParking.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,11 +19,13 @@ namespace CarParking.Api.Controllers
     [Authorize]
     public class VehicleController : ApiControllerBase
     {
+        private readonly IHttpContextAccessor _contextAccessor;
         private readonly IVehicleService _vehicleService;
         private readonly IMapper _mapper;
 
-        public VehicleController(IVehicleService vehicleService, IMapper mapper)
+        public VehicleController(IHttpContextAccessor contextAccessor, IVehicleService vehicleService, IMapper mapper)
         {
+            _contextAccessor = contextAccessor;
             _vehicleService = vehicleService;
             _mapper = mapper;
         }
@@ -72,6 +77,9 @@ namespace CarParking.Api.Controllers
         {
             try
             {
+                var userId = _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                
+                vehicleCreateRequest.UserId = int.Parse(userId);
                 var vehicleDto = _mapper.Map<VehicleCreateDto>(vehicleCreateRequest);
                 int vehicleId = await _vehicleService.CreateAsync(vehicleDto);
 
