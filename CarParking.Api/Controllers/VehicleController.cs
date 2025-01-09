@@ -102,10 +102,16 @@ namespace CarParking.Api.Controllers
         {
             try
             {
-                if (vehicleUpdateRequest == null || id != vehicleUpdateRequest.Id)
+                if (vehicleUpdateRequest == null)
                 {
                     return BadRequest();
                 }
+
+                var userId = _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                vehicleUpdateRequest.Id = id;
+                vehicleUpdateRequest.UserId = int.Parse(userId);
+
                 var vehicleDto = _mapper.Map<VehicleUpdateDto>(vehicleUpdateRequest);
                 await _vehicleService.UpdateAsync(vehicleDto);
 

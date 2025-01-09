@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarParking.DataAccess.Repositories.Interfaces
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class, new()
     {
         Task<T> FindAsync(int id);
         Task<T> AddAsync(T entity, bool persist = true);

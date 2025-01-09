@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarParking.DataAccess.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class,new()
     {
         protected readonly ApplicationDbContext _dbContext;
 
@@ -46,8 +46,9 @@ namespace CarParking.DataAccess.Repositories
 
         public async Task DeleteAsync(int id, bool persist = true)
         {
-            var entity = new { Id = id };
-            _dbContext.Entry(entity).State = EntityState.Deleted;
+            T entity = new T() { Id = id };
+            dbContext.Entry(entity).State = EntityState.Deleted;
+
             if (persist)
             {
                 await SaveChangesAsync();
