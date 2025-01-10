@@ -21,7 +21,14 @@ namespace CarParking.Services.Services
 
         public async Task<IEnumerable<Parking>> GetAllAsync()
         {
-            return await _parkingRepository.GetAllAsync();
+            var parkings = await _parkingRepository.GetAllAsync();
+
+            foreach(Parking parking in parkings)
+            {
+                parking.TotalPrice = _priceCalculator.Calc(parking.Zone, parking.StartTime, DateTime.Now);
+            }
+
+            return parkings;
         }
 
         public async Task<Parking> GetAsync(int parkingId)

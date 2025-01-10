@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace CarParking.Api.Controllers
 {
@@ -33,6 +34,7 @@ namespace CarParking.Api.Controllers
             try
             {
                 var parkings = await _parkingService.GetAllAsync();
+                var vehicle = parkings.First().Vehicle;
                 var response = new ApiResponse
                 {
                     Data = _mapper.Map<IEnumerable <ParkingDto>>(parkings)
@@ -74,6 +76,8 @@ namespace CarParking.Api.Controllers
         {
             try
             {
+                string userId = _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                startRequest.UserId = int.Parse(userId);
                 var startDto = _mapper.Map<ParkingStartDto>(startRequest);
                 Parking parking = await _parkingService.StartAsync(startDto);
                 ParkingDto parkingDto = _mapper.Map<ParkingDto>(parking);

@@ -20,6 +20,14 @@ namespace CarParking.DataAccess.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Parking>()
+                .Navigation(p => p.Zone).AutoInclude();
+            modelBuilder.Entity<Parking>()
+                .Navigation(p => p.Vehicle).AutoInclude();
+            modelBuilder.Entity<Parking>()
+                .Navigation(p => p.User).AutoInclude();
+
+
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
