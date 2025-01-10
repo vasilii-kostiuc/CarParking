@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CarParking.Models.Entities
 {
-    public class Parking
+    public class Parking : Entity
     {
-        public int Id { get; set; }
         public int? UserId { get; set; }
         public int? VehicleId { get; set; }
         public int? ZoneId { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarParking.Models.Entities
 {
-    public class User
+    public class User: Entity
     {
         public int Id { get; set; }
         public string Name { get; set; }

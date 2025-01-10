@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarParking.Models.Entities;
 
 namespace CarParking.DataAccess.Repositories.Interfaces
 {
-    public interface IRepository<T> where T : class, new()
+    public interface IRepository<T> where T : Entity, new()
     {
         Task<T> FindAsync(int id);
         Task<T> AddAsync(T entity, bool persist = true);

@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace CarParking.Models.Entities
 {
-    public class Vehicle
+    public class Vehicle : Entity
     {
-        [Key]
-        public int Id { get; set; }
         [Required]
         public string PlateNumber { get; set; }
         public string Description { get; set; }
