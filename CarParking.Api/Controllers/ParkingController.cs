@@ -33,8 +33,7 @@ namespace CarParking.Api.Controllers
         {
             try
             {
-                var parkings = await _parkingService.GetAllAsync();
-                var vehicle = parkings.First().Vehicle;
+                var parkings = await _parkingService.getActive(this.GetUserId());
                 var response = new ApiResponse
                 {
                     Data = _mapper.Map<IEnumerable <ParkingDto>>(parkings)
@@ -48,6 +47,26 @@ namespace CarParking.Api.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("history")]
+        public async Task<IActionResult> History()
+        {
+            try
+            {
+                var parkings = await _parkingService.getHistory(this.GetUserId());
+                var vehicle = parkings.First().Vehicle;
+                var response = new ApiResponse
+                {
+                    Data = _mapper.Map<IEnumerable<ParkingDto>>(parkings)
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResult(ex);
+            }
+        }
 
         [HttpGet]
         [Route("{id}")]
@@ -76,8 +95,7 @@ namespace CarParking.Api.Controllers
         {
             try
             {
-                string userId = _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                startRequest.UserId = int.Parse(userId);
+                startRequest.UserId = this.GetUserId();
                 var startDto = _mapper.Map<ParkingStartDto>(startRequest);
                 Parking parking = await _parkingService.StartAsync(startDto);
                 ParkingDto parkingDto = _mapper.Map<ParkingDto>(parking);
@@ -104,6 +122,12 @@ namespace CarParking.Api.Controllers
             {
                 return ExceptionResult(ex);
             }
+        }
+
+        private int GetUserId()
+        {
+            string userId = _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return int.Parse(userId);
         }
     }
 }

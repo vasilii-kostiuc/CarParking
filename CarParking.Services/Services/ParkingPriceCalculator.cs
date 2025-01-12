@@ -11,13 +11,14 @@ namespace CarParking.Services.Services
 {
     public class ParkingPriceCalculator : IParkingPriceCalculator
     {
-        public decimal Calc(Zone zone, DateTime start, DateTime end)
+        public decimal Calc(Zone zone, DateTime start, DateTime? end)
         {
-            TimeSpan timeAtParking = end - start;
+            TimeSpan? timeAtParking = end - start;
 
             decimal priceByMinit = zone.PricePerHour / 60;
 
-            decimal totalPrice = priceByMinit * (decimal)timeAtParking.TotalMinutes;
+
+            decimal totalPrice = priceByMinit * (decimal)timeAtParking?.TotalMinutes;
 
             return totalPrice;
         }

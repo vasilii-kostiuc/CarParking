@@ -19,6 +19,18 @@ namespace CarParking.Services.Services
             _priceCalculator = priceCalculator;
         }
 
+        public async Task<IEnumerable<Parking>> getActive(int userId)
+        {
+            var parkings = await _parkingRepository.GetActive(userId);
+
+            foreach (Parking parking in parkings)
+            {
+                parking.TotalPrice = _priceCalculator.Calc(parking.Zone, parking.StartTime, DateTime.Now);
+            }
+
+            return parkings;
+        }
+
         public async Task<IEnumerable<Parking>> GetAllAsync()
         {
             var parkings = await _parkingRepository.GetAllAsync();
@@ -31,9 +43,28 @@ namespace CarParking.Services.Services
             return parkings;
         }
 
+        public async Task<IEnumerable<Parking>> GetAllAsync(int userId)
+        {
+            var parkings = await _parkingRepository.GetActive(userId);
+
+            foreach (Parking parking in parkings)
+            {
+                parking.TotalPrice = _priceCalculator.Calc(parking.Zone, parking.StartTime, DateTime.Now);
+            }
+
+            return parkings;
+        }
+
         public async Task<Parking> GetAsync(int parkingId)
         {
             return await _parkingRepository.FindAsync(parkingId);
+        }
+
+        public async Task<IEnumerable<Parking>> getHistory(int userId)
+        {
+            var parkings = await _parkingRepository.GetHistory(userId);
+                       
+            return parkings;
         }
 
         public async Task<Parking> StartAsync(ParkingStartDto parkingStart)

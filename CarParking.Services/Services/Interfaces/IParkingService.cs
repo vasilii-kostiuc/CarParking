@@ -17,5 +17,11 @@ namespace CarParking.Services.Services.Interfaces
         public Task<Parking> GetAsync(int parkingId);
 
         public Task<IEnumerable<Parking>> GetAllAsync();
+       
+        public Task<IEnumerable<Parking>> GetAllAsync(int userId);
+        
+        public Task<IEnumerable<Parking>> getActive(int userId);
+        
+        public Task<IEnumerable<Parking>> getHistory(int userId);
     }
 }

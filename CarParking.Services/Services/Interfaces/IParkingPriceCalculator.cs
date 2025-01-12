@@ -4,6 +4,6 @@ namespace CarParking.Services.Services.Interfaces
 {
     public interface IParkingPriceCalculator
     {
-        public decimal Calc(Zone zone, DateTime start, DateTime end);
+        public decimal Calc(Zone zone, DateTime start, DateTime? end);
     }
 }
