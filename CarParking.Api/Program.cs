@@ -76,7 +76,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseCors(builder => { builder.SetIsOriginAllowed((origin) => { return origin == "http://localhost:5173"; }); builder.AllowAnyHeader(); builder.AllowAnyMethod(); });
+app.UseCors(builder => { builder.SetIsOriginAllowed((origin) => { return origin == "http://localhost:5173"; }); builder.AllowAnyHeader(); builder.AllowAnyMethod();builder.AllowCredentials(); });
 //app.UseRouting();
 app.MapControllers();
 app.Run();
