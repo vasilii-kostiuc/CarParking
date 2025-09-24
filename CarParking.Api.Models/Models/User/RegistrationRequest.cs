@@ -9,9 +9,9 @@ namespace CarParking.Api.Models.Models.User
         [Required]
         public string Email { get; set; }
         [Required]
+        [Compare("Confirmation", ErrorMessage = "The password and confirmation password do not match.")]
         public string Password { get; set; }
         [Required]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string Confirmation { get; set; }
     }
 }
